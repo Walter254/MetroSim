@@ -128,9 +128,3 @@ I used unit_test.h to test most of my code:
      terminal and my program passed those. While coding, I consistently 
      compared my code with the reference program provided to us. This was 
      especially easy to do after implementing printing functions.
-    
-
-Part that you found most difficult:
-
-Implementing and testing MetroSim. Also  - understanding valgrind error if it
-not heap error.
