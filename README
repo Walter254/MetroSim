@@ -1,0 +1,150 @@
+/**********************************************************
+* HW2: Metro Simulator
+* Comp 15
+* Walter Wagude
+* 10/13/2021
+* README
+*
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make MetroSim
+     - run executable with
+            ./MetroSim stationsFile passFile [commands]
+
+
+Program Purpose:
+
+This homework assignment simulates a running train to accommodate
+passengers arriving/departing a metro.  Learn how to design and
+modularize code and work with documented libraries.
+
+
+Acknowledgements:
+ 
+Reviewed hw1 code and code about opening a file (istream) to refresh my memory
+on working with files. Discussed my Design with July- Cs15 TA. Used resources
+from reference on the website to learn more about vector.
+
+
+Files: 
+
+main.cpp:
+     STUDENT TO-DO: Main file should be short and handle simple driver
+     functions such as reading in files.
+
+MetroSim.cpp:
+     STUDENT TO-DO: Implementation of MetroSim class.  Main
+     functionality of running the Metro Simulation, should be able to
+     move trains and deal with passengers going on/off the train.
+
+MetroSim.h:
+     STUDENT TO-DO: Interface of MetroSim class.
+
+stations.txt:
+     an example file containing a list of stations.
+
+test_commands.txt:
+     sample list of commands that you could give to the simulator
+
+the_metroSim:
+     reference implementation for students to see how 
+
+
+Note:  the program should handle all cases.
+
+Data Structures:
+
+My design to implement this program included using a vector of passengerqueues,
+where passengerqueues are vectors of passengers. Both the Train and the
+Stations are instances of vector of type PassengerQueue. Using vector to 
+implement this program made the code easier to follow and more neat. The
+member functions of vector also proved to be very useful. A challenge I had
+while dealing with a vector of a vector of a struct is the naming of functions-
+some of my functions had the same name as the member function of vector and
+that made some coding confusing but once I changed the names, it solved the
+issue. The data structure in this case is queue implemented using vector.
+
+
+Testing:
+
+I used unit_test.h to test most of my code:
+     
+     Tests for Passenger:
+     
+     For Passenger struct, I created an instance of Passenger and initialized
+     it with the id, arrival and destination information. An edge case that 
+     came in mind here is when there is an arrival or destination of negative
+     value, the specs say that we should not worry about that but it was worth
+     it to think about it. I received a segfault when I first tried it but then
+     passed in valid values and my test worked with no errors.
+     I also tested the print function by calling it to print one instance of a
+     passenger and their respective information, I compared this print with the
+     reference one and it looked right.
+     
+     Tests for PassengerQueue:
+     
+     At first, I went back and forth a lot trying to figure out how to 
+     implement PassengerQueue, either to use vector or linkedlist. I am glad I
+     chose vector because that made testing easier. To test most of the member
+     functions, I used an instance of Passenger, assert, print function and 
+     an instance of PassengerQueue. For example for enqueue and dequeue, I 
+     just passed in the instance of Passenger that I created into the function 
+     called by the instance of PassengerQueue. I did not really run into
+     difficult errors that required an extended amount of time to debug.
+     
+     Tests for MetroSim
+     
+     For MetroSim, I started by testing the constructor, destructor and print
+     functions because I knew those would be important in testing the other
+     functions. I got my first valgrind error when I tested the constructor
+     function. I did not use heap so at first I was confused but after looking 
+     through the error details I realised that the error was a result of me not
+     initializing something. I traced my code and I still could not find any 
+     uninitialized variables. After a lot of time of debugging using cerr with 
+     no progress, I decided to continue to the other functions and continue
+     testing. When I tested the destructor and print function, the same error 
+     showed only that now it was three errors because I had it in my three test
+     functions. It had to do with my print function but I could not find my
+     uninitialized variable. Went to office hours and looked through my code 
+     with a TA and still did not make any progress. When I later on looked at
+     my code, I realized that I initialized num_station, a private member
+     variable in MetroSim with 1, but for my print function I did not
+     subtract 1 for the purposes of indexing. When I corrected this, my errors 
+     were solved and my tests passed along with valgrind tests. One difficulty
+     that I faced was passing in files from unit test to functions in MetroSim
+     . So I decided to make one function that pretty much calls either all the
+     other functions or functions that call other functions then tested that 
+     with different cases. If the test would pass all the tests, this would 
+     indicate that the other functions were bug free and could handle different
+     situations. I created a function get_command then duplicated it and
+     changed a few things to create another function, cin_command that takes
+     commands from a file or cin respectively. I tested the get_command 
+     function on unit_test.h and passed in commands that would normally be
+     passed in on the commandline. After that, I called the print stations 
+     function. The edge cases that I came across/ thought about and tested 
+     while testing MetroSim were a case where a file doesn't open and when the 
+     commands are not enough. Other parts of MetroSim were tested using main 
+     and terminal.
+     
+     Terminal and main testing.
+     
+     After I finished coding and felt confident about everything, I called the 
+     MetroSim functions in main in accordance with the number of commands 
+     given. Some edge cases in this were, if a file does not open, if 
+     arguments received are more or less than intended.
+     I also used diff testing to compare outputs in output file and 
+     terminal and my program passed those. While coding, I consistently 
+     compared my code with the reference program provided to us. This was 
+     especially easy to do after implementing printing functions.
+    
+
+Part that you found most difficult:
+
+Implementing and testing MetroSim. Also  - understanding valgrind error if it
+not heap error.
+
+Time spent:
+
+12 hours
