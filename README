@@ -1,8 +1,8 @@
 /**********************************************************
-* HW2: Metro Simulator
-* Comp 15
+* Metro Simulator
+* 
 * Walter Wagude
-* 10/13/2021
+* 
 * README
 *
 *********************************************************/
@@ -16,31 +16,21 @@ Compile/run:
 
 Program Purpose:
 
-This homework assignment simulates a running train to accommodate
-passengers arriving/departing a metro.  Learn how to design and
-modularize code and work with documented libraries.
-
-
-Acknowledgements:
- 
-Reviewed hw1 code and code about opening a file (istream) to refresh my memory
-on working with files. Discussed my Design with July- Cs15 TA. Used resources
-from reference on the website to learn more about vector.
+This project simulates a running train to accommodate
+passengers arriving/departing a metro. Designs and
+modularizes code.
 
 
 Files: 
 
 main.cpp:
-     STUDENT TO-DO: Main file should be short and handle simple driver
-     functions such as reading in files.
-
 MetroSim.cpp:
-     STUDENT TO-DO: Implementation of MetroSim class.  Main
+     Implementation of MetroSim class.  Main
      functionality of running the Metro Simulation, should be able to
      move trains and deal with passengers going on/off the train.
 
 MetroSim.h:
-     STUDENT TO-DO: Interface of MetroSim class.
+     Interface of MetroSim class.
 
 stations.txt:
      an example file containing a list of stations.
@@ -144,7 +134,3 @@ Part that you found most difficult:
 
 Implementing and testing MetroSim. Also  - understanding valgrind error if it
 not heap error.
-
-Time spent:
-
-12 hours
